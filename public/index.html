@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Language Partner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Language Partner</h1>
+      <div class="lang-toggle" role="tablist">
+        <button class="lang-btn active" data-lang="zh" role="tab">中文 Mandarin</button>
+        <button class="lang-btn" data-lang="ja" role="tab">日本語 Japanese</button>
+      </div>
+    </header>
+
+    <div id="mainTabs" class="tabs">
+      <button class="tab-btn active" data-tab="talk">Talk</button>
+      <button class="tab-btn" data-tab="plan">Study Plan</button>
+    </div>
+
+    <main>
+      <div id="talkView" class="view">
+        <div class="talk-grid">
+          <section class="conversation-panel">
+            <div class="controls">
+              <div class="level-select">
+                <label for="level">Level</label>
+                <select id="level"></select>
+              </div>
+              <button id="connectBtn" class="connect-btn">Start conversation</button>
+              <span id="status" class="status">Not connected</span>
+            </div>
+
+            <div id="transcript" class="transcript">
+              <p class="hint">Hit "Start conversation," allow mic access, and just start talking. Your partner will speak back, correct you gently, and keep the conversation going.</p>
+            </div>
+
+            <audio id="remoteAudio" autoplay></audio>
+          </section>
+
+          <aside class="lookup-panel">
+            <h2>Ask about a word</h2>
+            <p class="lookup-hint">Ask about a word, phrase, or grammar point — get an English explanation without starting a voice call.</p>
+            <form id="askForm" class="lookup-form">
+              <input id="askInput" type="text" placeholder="e.g. what does 竞争 mean?" autocomplete="off" />
+              <button type="submit">Ask</button>
+            </form>
+            <div id="askResults" class="ask-results"></div>
+          </aside>
+        </div>
+      </div>
+
+      <div id="planView" class="view hidden">
+        <div class="plan-grid">
+          <div class="plan-main">
+            <div class="dashboard">
+              <div class="stat-tile">
+                <span class="stat-label">Days left</span>
+                <span id="dashDaysLeft" class="stat-value">–</span>
+              </div>
+              <div class="stat-tile">
+                <span class="stat-label">Status</span>
+                <span id="dashStatus" class="stat-value">–</span>
+              </div>
+              <div class="stat-tile">
+                <span class="stat-label">Sessions done</span>
+                <span id="dashProgress" class="stat-value">–</span>
+              </div>
+              <div class="stat-tile">
+                <span class="stat-label">Rough readiness</span>
+                <span id="dashReadiness" class="stat-value">–</span>
+              </div>
+              <div class="stat-tile stat-wide">
+                <span class="stat-label">Currently on</span>
+                <span id="dashCurrentUnit" class="stat-value">–</span>
+              </div>
+            </div>
+            <p class="dashboard-note">Readiness is a rough blend of vocab you've marked learned and syllabus sessions completed — not an official HSK score. Status only shows a verdict on checkpoint dates (Sep 6, Sep 27, Oct 18, Nov 8, Nov 29) — other days just show progress, no judgment.</p>
+
+            <h2 class="section-title">Schedule — HSK Standard Course 4A · real HSK4 test Dec 12, 2026</h2>
+            <div id="scheduleList" class="schedule-list"></div>
+          </div>
+
+          <aside id="hskPanel" class="hsk-panel">
+            <div class="hsk-header">
+              <h2>HSK4 Vocab Tracker</h2>
+              <span id="hskProgressText">0 / 0 learned</span>
+            </div>
+            <p class="hsk-caption">~100 curated common words — the official HSK4 list is ~600. Add words from your book as you go.</p>
+            <div class="hsk-progress-bar">
+              <div id="hskProgressFill" class="hsk-progress-fill"></div>
+            </div>
+            <form id="addWordForm" class="add-word-form">
+              <input id="newHanzi" type="text" placeholder="汉字" autocomplete="off" />
+              <input id="newPinyin" type="text" placeholder="pinyin" autocomplete="off" />
+              <input id="newEnglish" type="text" placeholder="english" autocomplete="off" />
+              <button type="submit">+ Add</button>
+            </form>
+            <input id="hskSearch" class="hsk-search" type="text" placeholder="Search vocab..." />
+            <div class="hsk-filter">
+              <label><input type="checkbox" id="hideLearned" /> Hide learned</label>
+            </div>
+            <ul id="hskList" class="hsk-list"></ul>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
